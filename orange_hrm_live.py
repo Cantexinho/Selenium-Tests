@@ -314,6 +314,12 @@ class OrangeHrmLive:
         self.add_license_exp_date()
         self.add_ssn_number()
         self.add_sin_number()
+        self.add_nationality()
+        self.add_martial_status()
+        self.add_date_of_birth()
+        self.add_gender()
+        self.add_mil_service()
+        self.add_blood_type()
         self.click_save()
         # self.add_attachment()
 
@@ -415,6 +421,100 @@ class OrangeHrmLive:
         )
         sin_number.send_keys("1234567890")
 
+    def add_nationality(self) -> None:
+        nationality = WebDriverWait(self.driver, 30).until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[1]/div/div[2]/div/div[1]/div[1]',
+                )
+            )
+        )
+        nationality.click()
+        nationality_option = WebDriverWait(self.driver, 30).until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[1]/div/div[2]/div/div[2]/div[5]',
+                )
+            )
+        )
+        nationality_option.click()
+
+    def add_martial_status(self) -> None:
+        martial_status = WebDriverWait(self.driver, 30).until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[2]/div/div[2]/div/div',
+                )
+            )
+        )
+        martial_status.click()
+        martial_status_option = WebDriverWait(self.driver, 30).until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[1]/div[2]/div/div[2]/div/div[2]/div[2]',
+                )
+            )
+        )
+        martial_status_option.click()
+
+    def add_date_of_birth(self) -> None:
+        date_of_birth = WebDriverWait(self.driver, 30).until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[2]/div[1]/div/div[2]/div/div/input',
+                )
+            )
+        )
+        date_of_birth.click()
+        date_of_birth.send_keys("1999-02-01")
+
+    def add_gender(self) -> None:
+        gender = WebDriverWait(self.driver, 30).until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[3]/div[2]/div[2]/div/div[2]/div[1]/div[2]/div/label/span',
+                )
+            )
+        )
+        gender.click()
+
+    def add_mil_service(self) -> None:
+        mil_service = WebDriverWait(self.driver, 30).until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[4]/div/div[1]/div/div[2]/input',
+                )
+            )
+        )
+        mil_service.send_keys("Gelezinis vilkas")
+
+    def add_blood_type(self) -> None:
+        blood_type = WebDriverWait(self.driver, 30).until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div/form/div[1]/div/div/div/div[2]/div/div',
+                )
+            )
+        )
+        blood_type.click()
+        blood_type_option = WebDriverWait(self.driver, 30).until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[2]/div[2]/div/form/div[1]/div/div/div/div[2]/div/div[2]/div[3]',
+                )
+            )
+        )
+        blood_type_option.click()
+
     def click_save(self) -> None:
         save = WebDriverWait(self.driver, 30).until(
             EC.presence_of_element_located(
@@ -470,10 +570,3 @@ class OrangeHrmLive:
     def quit_driver(self) -> None:
         input("Press Enter to close the browser...")
         self.driver.quit()
-
-
-# Ištestuokite kandidato pridėjimą
-# https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate.
-# Užpildykite visus formos laukus ir prisekite kokį nors failą.
-# Išsaugokite kandidatą, spauskite Shortlist ir pridėkite kokį nors pranešimą Notes lauke.
-# Spauskite Schedule Interview ir pridėkite kokį nors interviu, užpildydami visus laukus.
